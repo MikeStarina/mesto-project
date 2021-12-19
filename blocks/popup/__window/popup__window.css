@@ -1,10 +1,8 @@
 .popup__window {
-    position: sticky;
-    top: 195px;
-
+    
+    position: relative;  
     background-color: white;
     width: 430px;
-    height: 330px;
     box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
     border-radius: 10px;
 }
@@ -12,8 +10,6 @@
 @media (max-width: 700px) {
     .popup__window {
         width: 282px;
-        height: 322px;
-
         position: sticky;
         top: 123px;
     }

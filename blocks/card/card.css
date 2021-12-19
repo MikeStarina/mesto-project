@@ -2,7 +2,6 @@
     box-sizing: border-box;
     width: 100%;
     max-width: 282px;
-    max-height: 361px;
     background-color: #fff;
     color: #000;
     border: none;
@@ -12,4 +11,10 @@
     flex-direction: column;
     align-content: flex-start;
     
+}
+
+@media (max-width: 900px) {
+    .card {
+        max-width: 100%;
+    }
 }

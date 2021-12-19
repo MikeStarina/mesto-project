@@ -3,3 +3,11 @@
     width: 100%;
     max-width: 282px;
 }
+
+@media (max-width: 900px) {
+    .card__image {
+        max-width: 100%;
+        object-fit: cover;
+        max-height: 282px;
+    }
+}
