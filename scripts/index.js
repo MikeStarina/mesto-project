@@ -144,11 +144,11 @@ placeAddButton.addEventListener('click', function() {
 elements.addEventListener('click', function(event) {
     const like = event.target;
     if (event.target.classList.contains('card__like') && !event.target.classList.contains('card__like_active')) {
-        like.style.backgroundImage = 'url(../images/like-icon-active.svg)';
+        like.style.backgroundImage = 'url(images/like-icon-active.svg)';
         console.log(like.style.backgroundImage);
         like.classList.add('card__like_active');
     } else if (event.target.classList.contains('card__like') && event.target.classList.contains('card__like_active')) {
-        like.style.backgroundImage = 'url(../images/like-icon.svg)';
+        like.style.backgroundImage = 'url(images/like-icon.svg)';
         console.log(like.style.backgroundImage);
         like.classList.remove('card__like_active');
     };
