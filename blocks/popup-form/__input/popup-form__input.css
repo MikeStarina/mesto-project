@@ -1,4 +1,4 @@
-.profile-form__input {
+.popup-form__input {
     margin: 0;
     margin-bottom: 30px;
     padding: 0;
@@ -7,7 +7,7 @@
     height: 27px;
 }
 
-.profile-form__input::placeholder {
+.popup-form__input::placeholder {
     font-family: Inter;
     font-style: normal;
     font-weight: normal;
@@ -18,6 +18,6 @@
 }
 
 
-.profile-form__input:last-child {
+.popup-form__input:last-child {
     margin: 0;
 }

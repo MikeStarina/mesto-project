@@ -1,4 +1,4 @@
-.profile-form {
+.popup-form {
     margin: 0;
     padding: 0;
     border: none;
@@ -8,7 +8,7 @@
 }
 
 @media (max-width: 700px) {
-    .profile-form {
+    .popup-form {
         padding: 0 22px 25px;
     }
 }

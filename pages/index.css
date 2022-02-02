@@ -7,16 +7,19 @@
 @import url(../blocks/popup/__window/popup__window.css);
 @import url(../blocks/popup/__close-button/popup__close-button.css);
 @import url(../blocks/popup/__title/popup__title.css);
-@import url(../blocks/profile-form/profile-form.css);
-@import url(../blocks/profile-form/__fieldset/profile-form__fieldset.css);
-@import url(../blocks/profile-form/__input/profile-form__input.css);
-@import url(../blocks/profile-form/__submit-button/profile-form__submit-button.css);
+@import url(../blocks/popup-form/popup-form.css);
+@import url(../blocks/popup-form/__fieldset/popup-form__fieldset.css);
+@import url(../blocks/popup-form/__input/popup-form__input.css);
+@import url(../blocks/popup-form/__submit-button/popup-form__submit-button.css);
 
 @import url(../blocks/image-popup/image-popup.css);
-@import url(../blocks/image-popup/__close-button/image-popup__close-button.css);
 @import url(../blocks/image-popup/__pic/image-popup__pic.css);
 @import url(../blocks/image-popup/__caption/image-popup__caption.css);
 @import url(../blocks/image-popup/__window/image-popup__window.css);
+
+@import url(../blocks/popup/_is/popup_is_opened.css);
+@import url(../blocks/popup/_is/popup_is_closed.css);
+
 
 @import url(../blocks/header/header.css);
 @import url(../blocks/logo/logo.css);

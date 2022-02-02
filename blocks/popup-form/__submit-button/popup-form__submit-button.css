@@ -1,4 +1,4 @@
-.profile-form__submit-button {
+.popup-form__submit-button {
     height: 50px;
     background-color: #000;
     color: #fff;
@@ -8,12 +8,12 @@
     cursor: pointer;
 }
 
-.profile-form__submit-button:hover {
+.popup-form__submit-button:hover {
     opacity: .8;
 }
 
 @media (max-width:700px) {
-    .profile-form__submit-button {
+    .popup-form__submit-button {
         height: 46px; 
     }
 }

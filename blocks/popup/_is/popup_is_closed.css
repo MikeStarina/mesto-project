@@ -1,0 +1,4 @@
+.popup_is_closed {
+    visibility: hidden;
+    opacity: 0;
+}
