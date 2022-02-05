@@ -1,15 +1,4 @@
-@keyframes opct {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
 .popup_is_opened {
     visibility: visible;
-    animation: opct .5s ease-out;
-
+    opacity: 1;
 }
