@@ -97,10 +97,10 @@ function createCard (name, link) {
         imagePopupPic.setAttribute('alt', cardImage.getAttribute('alt'));
         imagePopupCaption.textContent = cardImage.getAttribute('alt');
 
-        imagePopupCloseButton.addEventListener('click', function() {
-            closePopup(imagePopup);
-        });
+        
     });
+
+   
 
 
     return card;
@@ -109,11 +109,11 @@ function createCard (name, link) {
 
 //six basics cards
 
-for (let i = initialCards.length - 1; i >= 0; i--) {
+initialCards.forEach(function(item) {
     
-    elements.append(createCard(initialCards[i].name, initialCards[i].link));
+    elements.append(createCard(item.name, item.link));
 
-};
+});
 
 
 
@@ -147,8 +147,7 @@ profilePopupForm.addEventListener('submit', function(event) {
 
 
 addPlaceButton.addEventListener('click', function() {
-    cardPopupNameInput.value = '';
-    cardPopupLinkInput.value = '';
+    
     openPopup(cardPopup);
 });
 
@@ -162,9 +161,12 @@ cardPopupForm.addEventListener('submit', function(event) {
     event.preventDefault();
     elements.prepend(createCard(cardPopupNameInput.value, cardPopupLinkInput.value));
     closePopup(cardPopup);
+    cardPopupForm.reset();
 });
 
 
 
-
+imagePopupCloseButton.addEventListener('click', function() {
+    closePopup(imagePopup);
+});
 
