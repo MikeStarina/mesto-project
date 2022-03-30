@@ -173,16 +173,29 @@ imagePopupCloseButton.addEventListener('click', function() {
 });
 
 
-//закрытие через оверлей
+//закрытие по клику на оверлей и по нажатию Esc
 
 popupSection.forEach((popup) => {
     popup.addEventListener('click', function(evt){
-        
-            
+
             closePopup(evt.target);
-        
     });
+
+    document.addEventListener('keydown', function(evt){
+      if (evt.key === 'Escape' && popup.classList.contains('popup_is_opened')) {
+        closePopup(popup);
+      }
+    });
+    
+
+   
 });
+
+
+
+
+
+
 
 
 
