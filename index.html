@@ -15,7 +15,7 @@
         <img src="images/logo.svg" alt="Место" class="logo">
     </header>
 
-    <section class="popup profile-popup">
+    <section class="popup profile-popup" tabindex="-1">
 
         <div class="popup__window">
 
@@ -25,11 +25,11 @@
 
                     <fieldset class="popup-form__fieldset">
                         <div class="popup-form__container">
-                            <input type="text" class="popup-form__input" id="name-input" name="name" required minlength="2">
+                            <input type="text" class="popup-form__input" id="name-input" name="name" required minlength="2" maxlength="40">
                             <span class="popup-form__input-error name-input-error"></span>
                         </div>
                         <div class="popup-form__container">
-                            <input type="text" class="popup-form__input" id="description-input" name="descriprion" required minlength="5">
+                            <input type="text" class="popup-form__input" id="description-input" name="descriprion" required minlength="5" maxlength="400">
                             <span class="popup-form__input-error description-input-error"></span>
                         </div>
                         <button type="submit" class="popup-form__submit-button" formaction="#">Сохранить</button>
@@ -42,7 +42,7 @@
     
     </section>
 
-    <section class="popup card-popup">
+    <section class="popup card-popup" tabindex="-1">
 
             <div class="popup__window">
                 <button class="popup__close-button" type="button"></button>
@@ -51,11 +51,11 @@
 
                     <fieldset class="popup-form__fieldset">
                         <div class="popup-form__container">
-                            <input type="text" class="popup-form__input" id="place-title-input" name="place-title" placeholder="Название" required minlength="2">
+                            <input type="text" class="popup-form__input" id="place-title-input" name="place-title" placeholder="Название" required minlength="2" maxlength="40">
                             <span class="popup-form__input-error place-title-input-error"></span>
                         </div>
                         <div class="popup-form__container">
-                            <input type="text" class="popup-form__input" id="place-link-input" name="place-link"  placeholder="Ссылка на картинку" required minlength="5">
+                            <input type="url" class="popup-form__input" id="place-link-input" name="place-link"  placeholder="Ссылка на картинку" required>
                             <span class="popup-form__input-error place-link-input-error"></span>
                         </div>
                         <button type="submit" class="popup-form__submit-button" formaction="#">Создать</button>
