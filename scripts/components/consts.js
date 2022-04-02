@@ -1,7 +1,3 @@
-//import './index.css';
-
-
-
 //consts
 
 export const profileEditbutton = document.querySelector('.profile__edit-button');
@@ -33,7 +29,7 @@ export const content = document.querySelector('.content');
 
 export const popupSection = Array.from(document.querySelectorAll('.popup'));
 
-const validationSettings = {
+export const validationSettings = {
   formSelector: '.popup-form',
   fieldsetSelector: '.popup-form__fieldset',
   inputSelector: '.popup-form__input',
@@ -44,7 +40,7 @@ const validationSettings = {
 }; 
 // Начальные карточки
 
-const initialCards = [
+export const initialCards = [
     {
       name: 'Архыз',
       link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
@@ -72,108 +68,3 @@ const initialCards = [
     ];
 
 
-
-
-
-//functions
-
-
-
-
-
-
-//six basics cards
-
-
-import {createCard, Cards} from './components/cards.js';
-
-
-Cards(initialCards);
-
-
-//popups
-
-import {openPopup, closePopup} from './components/modals.js';
-
-//profile edit popup
-
-profileEditbutton.addEventListener('click', function() {
-    profilePopupNameInput.value = profileName.textContent;
-    profilePopupDescriptionInput.value = profileDescription.textContent;
-    openPopup(profilePopup);
-});
-
-    
-
-profilePopupCLoseButton.addEventListener('click', function() {
-    closePopup(profilePopup);
-});
-
-
-profilePopupForm.addEventListener('submit', function(event) {
-    event.preventDefault();
-    profileName.textContent = profilePopupNameInput.value;
-    profileDescription.textContent =  profilePopupDescriptionInput.value;
-    closePopup(profilePopup);
-});
-
-
-
-
-//place add popup
-
-
-
-addPlaceButton.addEventListener('click', function() {
-    
-    openPopup(cardPopup);
-});
-
-
-cardPopupCloseButton.addEventListener('click', function() {
-    closePopup(cardPopup);
-});
-
-
-cardPopupForm.addEventListener('submit', function(event) {
-    event.preventDefault();
-    elements.prepend(createCard(cardPopupNameInput.value, cardPopupLinkInput.value));
-    closePopup(cardPopup);
-    cardPopupForm.reset();
-});
-
-
-
-imagePopupCloseButton.addEventListener('click', function() {
-    closePopup(imagePopup);
-});
-
-
-//закрытие по клику на оверлей и по нажатию Esc
-
-popupSection.forEach((popup) => {
-    popup.addEventListener('click', function(evt){
-
-            closePopup(evt.target);
-    });
-
-    document.addEventListener('keydown', function(evt){
-      if (evt.key === 'Escape' && popup.classList.contains('popup_is_opened')) {
-        closePopup(popup);
-      }
-    });
-    
-
-   
-});
-
-
-
-
-
-
-
-//валидация
-
-import {enableValidation} from './components/validation.js';
-enableValidation(validationSettings);
