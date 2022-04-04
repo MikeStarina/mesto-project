@@ -1,77 +1,6 @@
 import './index.css';
 
-
-
-//consts
-
-export const profileEditbutton = document.querySelector('.profile__edit-button');
-export const profilePopup = document.querySelector('.profile-popup');
-export const profilePopupNameInput = profilePopup.querySelector('#name-input');
-export const profilePopupDescriptionInput = profilePopup.querySelector('#description-input');
-export const profilePopupCLoseButton = profilePopup.querySelector('.popup__close-button');
-export const profilePopupForm = profilePopup.querySelector('.popup-form');
-
-
-export const profileName = document.querySelector('.profile__name');
-export const profileDescription = document.querySelector('.profile__description');
-
-export const addPlaceButton = document.querySelector('.profile__add-button');
-export const cardPopup = document.querySelector('.card-popup');
-export const cardPopupCloseButton = cardPopup.querySelector('.popup__close-button');
-export const cardPopupForm = cardPopup.querySelector('.popup-form');
-export const cardPopupNameInput = cardPopup.querySelector('#place-title-input');
-export const cardPopupLinkInput = cardPopup.querySelector('#place-link-input');
-
-export const imagePopup = document.querySelector('.image-popup');
-export const imagePopupPic = imagePopup.querySelector('.image-popup__pic');
-export const imagePopupCaption = imagePopup.querySelector('.image-popup__caption');
-export const imagePopupCloseButton = imagePopup.querySelector('.popup__close-button');
-
-export const elements = document.querySelector('.elements');
-export const cardTemplate = document.querySelector('#cardstemplate');
-export const content = document.querySelector('.content');
-
-export const popupSection = Array.from(document.querySelectorAll('.popup'));
-
-const validationSettings = {
-  formSelector: '.popup-form',
-  fieldsetSelector: '.popup-form__fieldset',
-  inputSelector: '.popup-form__input',
-  submitButtonSelector: '.popup-form__submit-button',
-  inactiveButtonClass: 'popup-form__submit-button_disabled',
-  inputErrorClass: 'popup-form__input_type_error',
-  errorClass: 'popup-form__input-error_active'
-}; 
-// Начальные карточки
-
-const initialCards = [
-    {
-      name: 'Архыз',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-      name: 'Челябинская область',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-      name: 'Иваново',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-      name: 'Камчатка',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-      name: 'Холмогорский район',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-      name: 'Байкал',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-    ];
-
-
+import * as consts from './components/consts.js';
 
 
 
@@ -85,10 +14,19 @@ const initialCards = [
 //six basics cards
 
 
-import {createCard, Cards} from './components/cards.js';
+import {createCard} from './components/cards.js';
 
 
-Cards(initialCards);
+const addCards = (Cards) => {    
+  Cards.forEach(function(item) {
+      
+      consts.elements.append(createCard(item.name, item.link));
+
+  });
+
+};
+
+addCards(consts.initialCards);
 
 
 //popups
@@ -97,24 +35,24 @@ import {openPopup, closePopup} from './components/modals.js';
 
 //profile edit popup
 
-profileEditbutton.addEventListener('click', function() {
-    profilePopupNameInput.value = profileName.textContent;
-    profilePopupDescriptionInput.value = profileDescription.textContent;
-    openPopup(profilePopup);
+consts.profileEditbutton.addEventListener('click', function() {
+    consts.profilePopupNameInput.value = consts.profileName.textContent;
+    consts.profilePopupDescriptionInput.value = consts.profileDescription.textContent;
+    openPopup(consts.profilePopup);
 });
 
     
 
-profilePopupCLoseButton.addEventListener('click', function() {
-    closePopup(profilePopup);
+consts.profilePopupCLoseButton.addEventListener('click', function() {
+    closePopup(consts.profilePopup);
 });
 
 
-profilePopupForm.addEventListener('submit', function(event) {
+consts.profilePopupForm.addEventListener('submit', function(event) {
     event.preventDefault();
-    profileName.textContent = profilePopupNameInput.value;
-    profileDescription.textContent =  profilePopupDescriptionInput.value;
-    closePopup(profilePopup);
+    consts.profileName.textContent = consts.profilePopupNameInput.value;
+    consts.profileDescription.textContent =  consts.profilePopupDescriptionInput.value;
+    closePopup(consts.profilePopup);
 });
 
 
@@ -124,34 +62,34 @@ profilePopupForm.addEventListener('submit', function(event) {
 
 
 
-addPlaceButton.addEventListener('click', function() {
+consts.addPlaceButton.addEventListener('click', function() {
     
-    openPopup(cardPopup);
+    openPopup(consts.cardPopup);
 });
 
 
-cardPopupCloseButton.addEventListener('click', function() {
-    closePopup(cardPopup);
+consts.cardPopupCloseButton.addEventListener('click', function() {
+    closePopup(consts.cardPopup);
 });
 
 
-cardPopupForm.addEventListener('submit', function(event) {
+consts.cardPopupForm.addEventListener('submit', function(event) {
     event.preventDefault();
-    elements.prepend(createCard(cardPopupNameInput.value, cardPopupLinkInput.value));
-    closePopup(cardPopup);
-    cardPopupForm.reset();
+    consts.elements.prepend(createCard(consts.cardPopupNameInput.value, consts.cardPopupLinkInput.value));
+    closePopup(consts.cardPopup);
+    consts.cardPopupForm.reset();
 });
 
 
 
-imagePopupCloseButton.addEventListener('click', function() {
-    closePopup(imagePopup);
+consts.imagePopupCloseButton.addEventListener('click', function() {
+    closePopup(consts.imagePopup);
 });
 
 
 //закрытие по клику на оверлей и по нажатию Esc
 
-popupSection.forEach((popup) => {
+consts.popupSection.forEach((popup) => {
     popup.addEventListener('click', function(evt){
 
             closePopup(evt.target);
@@ -176,4 +114,4 @@ popupSection.forEach((popup) => {
 //валидация
 
 import {enableValidation} from './components/validation.js';
-enableValidation(validationSettings);
+enableValidation(consts.validationSettings);
