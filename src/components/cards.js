@@ -1,4 +1,4 @@
-import {cardTemplate, elements, imagePopup, imagePopupPic, imagePopupCaption} from '../index.js';
+import {cardTemplate, imagePopup, imagePopupPic, imagePopupCaption} from './consts.js';
 import {openPopup} from './modals.js';
 
 
@@ -6,31 +6,46 @@ import {openPopup} from './modals.js';
   
     
 
-    function createCard (name, link) {
+function createCard (name, link) {
+
+
         const card = cardTemplate.content.cloneNode(true);
         const cardImage = card.querySelector('.card__image');
         const cardTitle = card.querySelector('.card__title');
         const cardDelete = card.querySelector('.card__delete');
         const cardLike = card.querySelector('.card__like');
 
-        cardImage.setAttribute('src', link);   
-        cardImage.setAttribute('alt', name);   
+        const removeCard = (el) => {
+            el.closest('.card').remove();
+        };
+
+        const like = (el) => {
+            el.classList.toggle('card__like_active');
+        };
+
+        const openImage = (el) => {
+            imagePopupPic.src = el.src;
+            imagePopupPic.alt = el.alt;
+            imagePopupCaption.textContent = el.alt;
+            openPopup(imagePopup);
+        };
+
+        cardImage.src = link;   
+        cardImage.alt = name;   
         cardTitle.textContent = name;
 
+        
+        
         cardDelete.addEventListener('click', function() {
-            cardDelete.closest('.card').remove();
+            removeCard(cardDelete);
         });
 
         cardLike.addEventListener('click', function() {
-            cardLike.classList.toggle('card__like_active');
+            like(cardLike);
         });
 
         cardImage.addEventListener('click', function() {
-            openPopup(imagePopup)
-            imagePopupPic.setAttribute('src', cardImage.getAttribute('src'));
-            imagePopupPic.setAttribute('alt', cardImage.getAttribute('alt'));
-            imagePopupCaption.textContent = cardImage.getAttribute('alt');
-
+            openImage(cardImage);
             
         });
 
@@ -38,15 +53,8 @@ import {openPopup} from './modals.js';
 
 
         return card;
-    };
-
-const Cards = (Cards) => {    
-    Cards.forEach(function(item) {
-        
-        elements.append(createCard(item.name, item.link));
-  
-    });
-
 };
 
-export {createCard, Cards};
+
+
+export {createCard};
