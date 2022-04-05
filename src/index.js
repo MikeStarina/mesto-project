@@ -2,16 +2,17 @@ import './index.css';
 
 import * as consts from './components/consts.js';
 
+import { getUser } from './components/api.js';
 
-
-//functions
-
-
-
+getUser();
 
 
 
-//six basics cards
+
+
+
+
+
 
 
 import {createCard} from './components/cards.js';
@@ -26,7 +27,17 @@ const addCards = (Cards) => {
 
 };
 
-addCards(consts.initialCards);
+
+fetch('https://nomoreparties.co/v1/plus-cohort-8/cards', {
+    headers: {
+      authorization: '50759d2c-ed17-4b18-a7b5-0eafaf69dc29'
+    }
+  })
+    .then(res => res.json())
+    .then((result) => {
+        addCards(result);
+    }); 
+
 
 
 //popups

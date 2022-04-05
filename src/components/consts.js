@@ -10,6 +10,7 @@ export const profilePopupForm = profilePopup.querySelector('.popup-form');
 
 export const profileName = document.querySelector('.profile__name');
 export const profileDescription = document.querySelector('.profile__description');
+export const profileImg = document.querySelector('.avatar');
 
 export const addPlaceButton = document.querySelector('.profile__add-button');
 export const cardPopup = document.querySelector('.card-popup');
