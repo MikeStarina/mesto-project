@@ -1,0 +1,14 @@
+.avatar__container {
+    position: relative;
+    opacity: 1;
+    background-color: black;
+    background-repeat: no-repeat;
+    background-clip: none;
+    background-position: center;
+    overflow: hidden;
+
+}
+
+.avatar__container:hover .avatar {
+    opacity: .6;
+}
