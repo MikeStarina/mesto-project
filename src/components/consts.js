@@ -7,7 +7,7 @@ export const profilePopupDescriptionInput = profilePopup.querySelector('#descrip
 export const profilePopupCLoseButton = profilePopup.querySelector('.popup__close-button');
 export const profilePopupForm = profilePopup.querySelector('.popup-form');
 
-export const profile = document.querySelector('.profile');
+
 export const profileName = document.querySelector('.profile__name');
 export const profileDescription = document.querySelector('.profile__description');
 export const profileImg = document.querySelector('.avatar');
@@ -46,7 +46,15 @@ export const validationSettings = {
   inputErrorClass: 'popup-form__input_type_error',
   errorClass: 'popup-form__input-error_active'
 }; 
-// Начальные карточки
+
+
+export const config = {
+  baseUrl: 'https://nomoreparties.co/v1/plus-cohort-8',
+  headers: {
+    authorization: '50759d2c-ed17-4b18-a7b5-0eafaf69dc29',
+    'Content-Type': 'application/json'
+  }
+}
 
 
 
