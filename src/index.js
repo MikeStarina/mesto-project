@@ -1,3 +1,6 @@
+import '../node_modules/core-js/stable';
+import '../node_modules/regenerator-runtime/runtime'
+
 import './index.css';
 
 import * as consts from './components/consts.js';
@@ -8,35 +11,23 @@ getUser();
 
 
 
+import { getCards } from './components/api.js';
 
+getCards();
 
-
-
+import { updateProfileInfo } from './components/api.js';
 
 
 
 import {createCard} from './components/cards.js';
 
 
-const addCards = (Cards) => {    
-  Cards.forEach(function(item) {
-      
-      consts.elements.append(createCard(item.name, item.link));
-
-  });
-
-};
+import { sendNudes } from './components/api.js';
 
 
-fetch('https://nomoreparties.co/v1/plus-cohort-8/cards', {
-    headers: {
-      authorization: '50759d2c-ed17-4b18-a7b5-0eafaf69dc29'
-    }
-  })
-    .then(res => res.json())
-    .then((result) => {
-        addCards(result);
-    }); 
+import { changeAvatar } from './components/api.js';
+
+
 
 
 
@@ -63,11 +54,40 @@ consts.profilePopupForm.addEventListener('submit', function(event) {
     event.preventDefault();
     consts.profileName.textContent = consts.profilePopupNameInput.value;
     consts.profileDescription.textContent =  consts.profilePopupDescriptionInput.value;
+    const data = {
+        'name': consts.profilePopupNameInput.value,
+        'about': consts.profilePopupDescriptionInput.value
+    }
+    updateProfileInfo(data);
     closePopup(consts.profilePopup);
 });
 
 
+//avatar edit popup
 
+consts.avatarEditButton.addEventListener('click', function() {
+    openPopup(consts.avatarPopup);
+})
+
+consts.avatarPopupCLoseButton.addEventListener('click', function() {
+    closePopup(consts.avatarPopup);
+});
+
+
+
+consts.avatarPopupForm.addEventListener('submit', function(event) {
+    event.preventDefault();
+    
+    consts.profileImg.src = consts.avatarPopupLinkInput.value;
+
+    const data = {
+        'avatar': consts.avatarPopupLinkInput.value
+    }
+    changeAvatar(data);
+
+    closePopup(consts.avatarPopup);
+    consts.avatarPopupForm.reset();
+})
 
 //place add popup
 
@@ -87,6 +107,12 @@ consts.cardPopupCloseButton.addEventListener('click', function() {
 consts.cardPopupForm.addEventListener('submit', function(event) {
     event.preventDefault();
     consts.elements.prepend(createCard(consts.cardPopupNameInput.value, consts.cardPopupLinkInput.value));
+    const data = {
+        'name': consts.cardPopupNameInput.value,
+        'link': consts.cardPopupLinkInput.value
+    }
+
+    sendNudes(data);
     closePopup(consts.cardPopup);
     consts.cardPopupForm.reset();
 });
