@@ -10,6 +10,13 @@ export const profilePopupForm = profilePopup.querySelector('.popup-form');
 
 export const profileName = document.querySelector('.profile__name');
 export const profileDescription = document.querySelector('.profile__description');
+export const profileImg = document.querySelector('.avatar');
+
+export const avatarEditButton = document.querySelector('.avatar__edit-button');
+export const avatarPopup = document.querySelector('.avatar-popup');
+export const avatarPopupLinkInput = avatarPopup.querySelector('#avatar-link-input');
+export const avatarPopupCLoseButton = avatarPopup.querySelector('.popup__close-button');
+export const avatarPopupForm = avatarPopup.querySelector('.popup-form');
 
 export const addPlaceButton = document.querySelector('.profile__add-button');
 export const cardPopup = document.querySelector('.card-popup');
@@ -29,6 +36,7 @@ export const content = document.querySelector('.content');
 
 export const popupSection = Array.from(document.querySelectorAll('.popup'));
 
+
 export const validationSettings = {
   formSelector: '.popup-form',
   fieldsetSelector: '.popup-form__fieldset',
@@ -38,34 +46,17 @@ export const validationSettings = {
   inputErrorClass: 'popup-form__input_type_error',
   errorClass: 'popup-form__input-error_active'
 }; 
-// Начальные карточки
 
-export const initialCards = [
-    {
-      name: 'Архыз',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-      name: 'Челябинская область',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-      name: 'Иваново',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-      name: 'Камчатка',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-      name: 'Холмогорский район',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-      name: 'Байкал',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-    ];
+
+export const config = {
+  baseUrl: 'https://nomoreparties.co/v1/plus-cohort-8',
+  headers: {
+    authorization: '50759d2c-ed17-4b18-a7b5-0eafaf69dc29',
+    'Content-Type': 'application/json'
+  }
+}
+
+
 
 
 

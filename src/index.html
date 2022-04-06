@@ -15,6 +15,30 @@
         <img src="<%=require('../images/logo.svg')%>" alt="Место" class="logo">
     </header>
 
+    <section class="popup avatar-popup" tabindex="-1">
+
+        <div class="popup__window">
+
+                <button class="popup__close-button" type="button"></button>
+                <h2 class="popup__title">Обновить аватар</h2>
+                <form action="#" class="popup-form" name="avatar-form" novalidate>
+
+                    <fieldset class="popup-form__fieldset">
+                       
+                        <div class="popup-form__container">
+                            <input type="url" class="popup-form__input" id="avatar-link-input" name="avatar-link"  placeholder="Ссылка на аватар" required>
+                            <span class="popup-form__input-error avatar-link-input-error"></span>
+                        </div>
+                        <button type="submit" class="popup-form__submit-button" name="submit" formaction="#">Сохранить</button>
+
+                    </fieldset>
+
+                </form>
+
+        </div>
+    
+    </section>
+
     <section class="popup profile-popup" tabindex="-1">
 
         <div class="popup__window">
@@ -32,7 +56,7 @@
                             <input type="text" class="popup-form__input" id="description-input" name="descriprion" required minlength="5" maxlength="400">
                             <span class="popup-form__input-error description-input-error"></span>
                         </div>
-                        <button type="submit" class="popup-form__submit-button" formaction="#">Сохранить</button>
+                        <button type="submit" class="popup-form__submit-button" name="submit" formaction="#">Сохранить</button>
 
                     </fieldset>
 
@@ -58,7 +82,7 @@
                             <input type="url" class="popup-form__input" id="place-link-input" name="place-link"  placeholder="Ссылка на картинку" required>
                             <span class="popup-form__input-error place-link-input-error"></span>
                         </div>
-                        <button type="submit" class="popup-form__submit-button" formaction="#">Создать</button>
+                        <button type="submit" class="popup-form__submit-button" name="submit" formaction="#">Создать</button>
                         
                     </fieldset>
 
@@ -85,15 +109,17 @@
 
         <section class="profile">
             <div class="profile__container">
-                <img src="<%=require('../images/avatar.jpg')%>" alt="аватар" class="avatar">
-
+                <div class="avatar__container">
+                    <img src="#" alt="аватар" class="avatar">
+                    <button class="avatar__edit-button"></button>
+                </div>
                 <div class="profile__info">
 
                     <div class="profile__info-block">
 
-                        <h1 class="profile__name">Жак-Ив Кусто</h1>
+                        <h1 class="profile__name"></h1>
 
-                        <p class="profile__description">Исследователь океана</p>
+                        <p class="profile__description"></p>
 
                     </div>
 
@@ -129,9 +155,10 @@
             <div class="card__caption">
                 <h2 class="card__title"></h2>
 
-
-                <button class="card__like" type="button"></button>
-
+                <div class="card__like-box">
+                    <button class="card__like" type="button"></button>
+                    <p class="card__like-counter">0</p>
+                </div>
             </div>
 
         </div>
