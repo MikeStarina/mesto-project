@@ -14,6 +14,7 @@ const enableValidation = (settings) => {
             errorClass: 'popup-form__input-error_active'
         }; 
     */
+    
 
     //сообщение об ошибке
     const showInputError = (formElement, inputElement, errorMessage) => {
@@ -38,8 +39,10 @@ const enableValidation = (settings) => {
     const toggleButtonState = (inputList, buttonElement) => {
         if (hasInvalidInput(inputList)) {
         buttonElement.classList.add(settings.inactiveButtonClass);
+        buttonElement.setAttribute('disabled', true);
         } else {
         buttonElement.classList.remove(settings.inactiveButtonClass);
+        buttonElement.removeAttribute('disabled', false);
         }
     };
 
@@ -82,9 +85,14 @@ const enableValidation = (settings) => {
 
         const formList = Array.from(document.querySelectorAll(settings.formSelector));
         formList.forEach((formElement) => {
-        //formElement.addEventListener('submit', function (evt) {
-        //  evt.preventDefault();
-        //}); 
+        formElement.addEventListener('submit', function (evt) {
+          evt.preventDefault();
+          const submits = document.querySelectorAll('.popup-form__submit-button');
+            submits.forEach(function(el) {
+                el.classList.add(settings.inactiveButtonClass);
+                el.setAttribute('disabled', true);
+    })
+        }); 
         
         const fieldsetList = Array.from(formElement.querySelectorAll(settings.fieldsetSelector)); 
     

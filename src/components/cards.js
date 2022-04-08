@@ -4,7 +4,7 @@ import {likeOn, likeDelete, getUserData} from './api.js'
   
     
 
-function createCard (name, link, likes, ownerId, cardId) {
+function createCard (name, link, likes, ownerId, cardId, userId) {
 
         
         const card = cardTemplate.content.cloneNode(true);
@@ -24,20 +24,20 @@ function createCard (name, link, likes, ownerId, cardId) {
 
 
         //проверка собственных лайков
-        getUserData().then(res => {
-            const liked = likes.some((el) => {
+       
+        const liked = likes.some((el) => {
 
-                return el._id === res._id;
-            })
-
-            return liked
-        })
-        .then(res => {
-            if (res) {
-                cardLike.classList.add('card__like_active');
-            }
-        })
-        .catch(err => {console.log(err)});
+            return el._id === userId;
+            
+        });   
+        
+    
+       
+        if (liked) {
+            cardLike.classList.add('card__like_active');
+        }
+        
+    
 
         //удаление карточку
         const removeCard = (el) => {
@@ -66,27 +66,38 @@ function createCard (name, link, likes, ownerId, cardId) {
         
 
         //удаляем только свои карточки
-        getUserData().then(res => {
-            if (res._id === ownerId) {
-                cardDelete.addEventListener('click', function() {
-                    removeCard(cardDelete);
-                });
-            } else {
-                cardDelete.classList.add('card__delete_inactive'); 
-            }
-        })
-       .catch(err => {console.log(err)});       
+       
+        if (userId === ownerId) {
+            cardDelete.addEventListener('click', function() {
+                removeCard(cardDelete);
+            });
+        } else {
+            cardDelete.classList.add('card__delete_inactive'); 
+        }
+       
        
         
         
 
         cardLike.addEventListener('click', function() {
             if (cardLike.classList.contains('card__like_active')) {
-                like(cardLike);
-                likeDelete(cardId, cardLikeCounter);
+              
+                likeDelete(cardId, cardLikeCounter)
+                .then(res => {
+                    like(cardLike);
+                })
+                .catch(error => {
+                    console.error(error);
+                });
             } else {
-                like(cardLike);
-                likeOn(cardId, cardLikeCounter);
+               
+                likeOn(cardId, cardLikeCounter)
+                .then(res => {
+                    like(cardLike);
+                })
+                .catch(error => {
+                    console.error(error);
+                });
             }
         });
 
@@ -102,9 +113,9 @@ function createCard (name, link, likes, ownerId, cardId) {
         return card;
 };
 
-const addCards = (Cards) => {    
+const addCards = (Cards, userId) => {    
     Cards.forEach(function(item) {
-        elements.append(createCard(item.name, item.link, item.likes, item.owner._id, item._id));
+        elements.append(createCard(item.name, item.link, item.likes, item.owner._id, item._id, userId));
   
     });
   
