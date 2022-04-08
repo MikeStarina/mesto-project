@@ -1,19 +1,19 @@
 import {config} from './consts.js';
 
+const checkResponse = (res) => {
+    if (res.ok) {
+        return res.json();
+    } else {
+        return Promise.reject(`Ошибка: ${res.status}`);
+    }
+}
 
 
 //Получение юзеринфо с сервера
 
 export const getUserData = () => {
     return fetch(`${config.baseUrl}/users/me`, {method: 'GET', headers: config.headers})
-    .then(res => {
-
-        if (res.ok) {
-            return res.json();
-        } else {
-            return Promise.reject(`Ошибка: ${res.status}`);
-        }
-    })  
+    .then(res => checkResponse(res))     //не работает с this :( 
 
 } 
 
@@ -25,16 +25,13 @@ export const getUserData = () => {
 
 export const getCards = () => {
     return fetch(`${config.baseUrl}/cards`, {method: 'GET', headers: config.headers})
-    .then(res => {
-
-        if (res.ok) {
-            return res.json();
-        } else {
-            return Promise.reject(`Ошибка: ${res.status}`);
-        }
-    })  
-
+    .then(res => checkResponse(res))
 } 
+
+
+export const basicData = () => {
+    return Promise.all([getUserData(), getCards()])
+}
 
 
 //Загрузка данных пользователя на сервер
@@ -42,14 +39,7 @@ export const getCards = () => {
 
 export const updateProfileInfo = (data) => {
     return fetch(`${config.baseUrl}/users/me`, {method: 'PATCH', headers: config.headers, body: JSON.stringify(data)})
-    .then(res => {
-
-        if (res.ok) {
-            return res.json();
-        } else {
-            return Promise.reject(`Ошибка: ${res.status}`);
-        }
-    })  
+    .then(res => checkResponse(res))
 
 } 
 
@@ -59,14 +49,7 @@ export const updateProfileInfo = (data) => {
 
 export const sendCards = (data) => {
     return fetch(`${config.baseUrl}/cards`, {method: 'POST', headers: config.headers, body: JSON.stringify(data)})
-    .then(res => {
-
-        if (res.ok) {
-            return res.json();
-        } else {
-            return Promise.reject(`Ошибка: ${res.status}`);
-        }
-    })  
+    .then(res => checkResponse(res))
 
 } 
 
@@ -75,43 +58,23 @@ export const sendCards = (data) => {
 
 export const likeOn = (cardId, likeCounter) => {
     return fetch(`${config.baseUrl}/cards/likes/${cardId}`, {method: 'PUT', headers: config.headers})
-        .then(res => {
-
-            if (res.ok) {
-                return res.json();
-            } else {
-                return Promise.reject(`Ошибка: ${res.status}`);
-            }
-        })  
+        .then(res => checkResponse(res))
 
         .then(res => {
             likeCounter.textContent = (res.likes.length);
         })
-        .catch(error => {
-            console.error(error);
-        })
-    
 }
 
 //снять лайк
 
 export const likeDelete = (cardId, likeCounter) => {
     return fetch(`${config.baseUrl}/cards/likes/${cardId}`, {method: 'DELETE', headers: config.headers})
-        .then(res => {
-
-            if (res.ok) {
-                return res.json();
-            } else {
-                return Promise.reject(`Ошибка: ${res.status}`);
-            }
-        })
+        .then(res => checkResponse(res))
         .then(res => {
             likeCounter.textContent = res.likes.length;
         
         })
-        .catch(error => {
-            console.error(error);
-        })
+        
     
 }
 
@@ -120,16 +83,15 @@ export const likeDelete = (cardId, likeCounter) => {
 
 export const changeAvatar = (data) => {
     return fetch(`${config.baseUrl}/users/me/avatar`, {method: 'PATCH', headers: config.headers, body: JSON.stringify(data)})
-    .then(res => {
-
-        if (res.ok) {
-            return res.json();
-        } else {
-            return Promise.reject(`Ошибка: ${res.status}`);
-        }
-    })  
+    .then(res => checkResponse(res))
 
 } 
+
+
+
+
+
+
 
 
 
