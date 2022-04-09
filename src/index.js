@@ -5,9 +5,8 @@ import './index.css';
 
 import * as consts from './components/consts.js';
 
-import { getUserData } from './components/api.js';
+
 import { setProfileData } from './components/profile.js';
-import { getCards } from './components/api.js';
 import { updateProfileInfo } from './components/api.js';
 import {createCard, addCards} from './components/cards.js';
 import { sendCards } from './components/api.js';
@@ -21,30 +20,10 @@ import {enableValidation} from './components/validation.js';
 
 
 
-//Данные пользователя
-/*
-getUserData().then(result => {
-    setProfileData(result.name, result.about, result.avatar);
-})
-.catch(error => {
-    console.error(error);
-});
 
-
-
-
-//Загрузка начальных карточек
-
-getCards().then(result => {
-
-    addCards(result);
-}).catch(error => {
-    console.error(error);
-});
-*/
 
 basicData().then(data => {
-    console.log(data);
+    
     addCards(data[1], data[0]._id);
     setProfileData(data[0].name, data[0].about, data[0].avatar);  
 }).catch(err => {
@@ -60,10 +39,10 @@ const loading = (isLoading, submitbutton, buttonText) => {
 
 
     if (isLoading) {
-        console.log(buttonText);
+        
         submitbutton.textContent = buttonText;
     } else {
-        console.log(buttonText);
+        
         submitbutton.textContent = buttonText;
     }
 }
@@ -137,10 +116,11 @@ consts.avatarPopupForm.addEventListener('submit', function(event) {
     changeAvatar(data).then(res => {
         consts.profileImg.src = res.avatar;
         closePopup(consts.avatarPopup);
+        consts.avatarPopupForm.reset();
     })
     .finally(res => {
         loading(false, consts.avatarPopupForm.elements.submit, buttonText);
-        consts.avatarPopupForm.reset();
+        
     })
     .catch(error => {
         console.error(error);
@@ -177,11 +157,12 @@ consts.cardPopupForm.addEventListener('submit', function(event) {
     sendCards(data).then(res => {
         consts.elements.prepend(createCard(data.name, data.link, res.likes, res.owner._id, res._id, res.owner._id));
         closePopup(consts.cardPopup);
+        consts.cardPopupForm.reset();
     })
     .finally(res => {
         loading(false, consts.cardPopupForm.elements.submit, buttonText);
         
-        consts.cardPopupForm.reset();
+        
     })
     .catch(err => {console.log(err)});
 
@@ -194,23 +175,7 @@ consts.imagePopupCloseButton.addEventListener('click', function() {
 });
 
 
-//закрытие по клику на оверлей и по нажатию Esc
-/*
-consts.popupSection.forEach((popup) => {
-    popup.addEventListener('click', function(evt){
 
-            closePopup(evt.target);
-    });
-
-    document.addEventListener('keydown', function(evt){
-      if (evt.key === 'Escape' && popup.classList.contains('popup_is_opened')) {
-        closePopup(popup);
-      }
-    });
-    
-
-   
-}); */
 
 
 
